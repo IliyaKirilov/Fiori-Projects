@@ -1,0 +1,150 @@
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+	<edmx:Reference Uri="../../catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/></edmx:Reference>
+	<edmx:Reference Uri="../../catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_UI',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI"/></edmx:Reference>
+	<edmx:Reference
+		Uri="../../catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/></edmx:Reference>
+	<edmx:Reference Uri="../../../sap/zbuildings_ik_srv/$metadata"><edmx:Include Namespace="ZBUILDINGS_IK_SRV" Alias="SAP"/></edmx:Reference>
+	<edmx:DataServices>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="zbuildings_ik_anno_mdl.v1">
+			<Annotations Target="ZBUILDINGS_IK_SRV.Z_C_APARTMENTType">
+				<Annotation Term="UI.Facets">
+					<Collection>
+						<Record Type="UI.CollectionFacet"><PropertyValue Property="Label" String="General Information about Apartments"/><PropertyValue Property="ID" String="GeneralInfo"/>
+							<PropertyValue Property="Facets">
+								<Collection>
+									<Record Type="UI.ReferenceFacet"><PropertyValue Property="Label" String="Apartments info"/><PropertyValue Property="ID" String="Apartmentsinfo"/><PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#Apartments info"/></Record>
+								</Collection>
+							</PropertyValue>
+						</Record>
+					</Collection>
+				</Annotation>
+				<Annotation Term="UI.FieldGroup" Qualifier="Apartments info">
+					<Record>
+						<PropertyValue Property="Data">
+							<Collection>
+								<Record Type="UI.DataField"><PropertyValue Property="Label" String="Apartment Number"/><PropertyValue Property="Value" Path="apt_num"/></Record>
+								<Record Type="UI.DataField"><PropertyValue Property="Label" String="Floor Number"/><PropertyValue Property="Value" Path="floor_number"/></Record>
+								<Record Type="UI.DataField"><PropertyValue Property="Label" String="Block Number"/><PropertyValue Property="Value" Path="block_number"/></Record>
+								<Record Type="UI.DataField"><PropertyValue Property="Label" String="Number of Rooms"/><PropertyValue Property="Value" Path="rooms"/></Record>
+								<Record Type="UI.DataField"><PropertyValue Property="Label" String="Family which lives inside the apartment"/><PropertyValue Property="Value" Path="family"/></Record>
+								<Record Type="UI.DataField"><PropertyValue Property="Label" String="Sqrt Meters of the Apartment"/><PropertyValue Property="Value" Path="sqr_meters"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.HeaderInfo">
+					<Record><PropertyValue Property="TypeName" String="Consumption for apartmanet"/>
+						<PropertyValue Property="Description">
+							<Record Type="UI.DataField"><PropertyValue Property="Label" String="Apartment"/></Record>
+						</PropertyValue>
+					</Record>
+					<Annotation Term="Core.Messages">
+						<Collection>
+							<Record><PropertyValue Property="message" String="UI.HEADERINFO: TypeNamePlural is mandatory"/><PropertyValue Property="severity" String="error"/></Record>
+						</Collection>
+					</Annotation>
+				</Annotation>
+				<Annotation Term="UI.LineItem">
+					<Collection>
+						<Record Type="UI.DataField"><PropertyValue Property="Label" String="Apartment Number"/><PropertyValue Property="Value" Path="apt_num"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Label" String="Floor Number"/><PropertyValue Property="Value" Path="floor_number"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Label" String="Block Number"/><PropertyValue Property="Value" Path="block_number"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Label" String="Number of Rooms"/><PropertyValue Property="Value" Path="rooms"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Label" String="Family which lives inside the apartment"/><PropertyValue Property="Value" Path="family"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Label" String="Sqrt Meters of the Apartment"/><PropertyValue Property="Value" Path="sqr_meters"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+					</Collection>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZBUILDINGS_IK_SRV.Z_C_BUILDINGType">
+				<Annotation Term="UI.Facets">
+					<Collection>
+						<Record Type="UI.CollectionFacet"><PropertyValue Property="Label" String="General Information for Buildings"/><PropertyValue Property="ID" String="GeneralInfo"/>
+							<PropertyValue Property="Facets">
+								<Collection>
+									<Record Type="UI.ReferenceFacet"><PropertyValue Property="Label" String="Building Info"/><PropertyValue Property="ID" String="BuildingInfo"/><PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#basic"/></Record>
+								</Collection>
+							</PropertyValue>
+						</Record>
+						<Record Type="UI.ReferenceFacet"><PropertyValue Property="Label" String="Floors"/><PropertyValue Property="ID" String="Floors"/><PropertyValue Property="Target" AnnotationPath="to_floors/@UI.LineItem"/></Record>
+					</Collection>
+				</Annotation>
+				<Annotation Term="UI.FieldGroup" Qualifier="basic">
+					<Record>
+						<PropertyValue Property="Data">
+							<Collection>
+								<Record Type="UI.DataField"><PropertyValue Property="Label" String="Block Number"/><PropertyValue Property="Value" Path="block_number"/></Record>
+								<Record Type="UI.DataField"><PropertyValue Property="Label" String="Address"/><PropertyValue Property="Value" Path="address"/></Record>
+								<Record Type="UI.DataField"><PropertyValue Property="Label" String="Number of Floors"/><PropertyValue Property="Value" Path="floor"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.HeaderInfo">
+					<Record><PropertyValue Property="TypeName" String="Consumption for buildings"/>
+						<PropertyValue Property="Description">
+							<Record Type="UI.DataField"><PropertyValue Property="Label" String="Building"/></Record>
+						</PropertyValue>
+					</Record>
+					<Annotation Term="Core.Messages">
+						<Collection>
+							<Record><PropertyValue Property="message" String="UI.HEADERINFO: TypeNamePlural is mandatory"/><PropertyValue Property="severity" String="error"/></Record>
+						</Collection>
+					</Annotation>
+				</Annotation>
+				<Annotation Term="UI.LineItem">
+					<Collection>
+						<Record Type="UI.DataField"><PropertyValue Property="Label" String="Block Number"/><PropertyValue Property="Value" Path="block_number"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Label" String="Address"/><PropertyValue Property="Value" Path="address"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Label" String="Number of Floors"/><PropertyValue Property="Value" Path="floor"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+					</Collection>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZBUILDINGS_IK_SRV.Z_C_FLOORType">
+				<Annotation Term="UI.Facets">
+					<Collection>
+						<Record Type="UI.CollectionFacet"><PropertyValue Property="Label" String="General Information about Floors"/><PropertyValue Property="ID" String="GeneralInfo"/>
+							<PropertyValue Property="Facets">
+								<Collection>
+									<Record Type="UI.ReferenceFacet"><PropertyValue Property="Label" String="Floor Info"/><PropertyValue Property="ID" String="FloorInfo"/><PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#Floor Info"/></Record>
+								</Collection>
+							</PropertyValue>
+						</Record>
+						<Record Type="UI.ReferenceFacet"><PropertyValue Property="Label" String="Apartments"/><PropertyValue Property="ID" String="Apartments"/><PropertyValue Property="Target" AnnotationPath="to_apt/@UI.LineItem"/></Record>
+					</Collection>
+				</Annotation>
+				<Annotation Term="UI.FieldGroup" Qualifier="Floor Info">
+					<Record>
+						<PropertyValue Property="Data">
+							<Collection>
+								<Record Type="UI.DataField"><PropertyValue Property="Label" String="Floor Number"/><PropertyValue Property="Value" Path="floor_number"/></Record>
+								<Record Type="UI.DataField"><PropertyValue Property="Label" String="Block Number"/><PropertyValue Property="Value" Path="block_number"/></Record>
+								<Record Type="UI.DataField"><PropertyValue Property="Label" String="Color of the floor"/><PropertyValue Property="Value" Path="color"/></Record>
+								<Record Type="UI.DataField"><PropertyValue Property="Label" String="Number of appartments"/><PropertyValue Property="Value" Path="number_apps"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.HeaderInfo">
+					<Record><PropertyValue Property="TypeName" String="Consumption for floors"/>
+						<PropertyValue Property="Description">
+							<Record Type="UI.DataField"><PropertyValue Property="Label" String="Floor"/></Record>
+						</PropertyValue>
+					</Record>
+					<Annotation Term="Core.Messages">
+						<Collection>
+							<Record><PropertyValue Property="message" String="UI.HEADERINFO: TypeNamePlural is mandatory"/><PropertyValue Property="severity" String="error"/></Record>
+						</Collection>
+					</Annotation>
+				</Annotation>
+				<Annotation Term="UI.LineItem">
+					<Collection>
+						<Record Type="UI.DataField"><PropertyValue Property="Label" String="Floor Number"/><PropertyValue Property="Value" Path="floor_number"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Label" String="Block Number"/><PropertyValue Property="Value" Path="block_number"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Label" String="Color of the floor"/><PropertyValue Property="Value" Path="color"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Label" String="Number of appartments"/><PropertyValue Property="Value" Path="number_apps"/><Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/></Record>
+					</Collection>
+				</Annotation>
+			</Annotations>
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

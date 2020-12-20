@@ -1,0 +1,85 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/></edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/></edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/></edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AGGREGATION',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="Org.OData.Aggregation.V1" Alias="Aggregation"/></edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PERSONALDATA',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="com.sap.vocabularies.PersonalData.v1" Alias="PersonalData"/></edmx:Reference>
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZBUILDINGS_IK_SRV" xml:lang="en" sap:schema-version="1">
+			<EntityType Name="Z_C_APARTMENTType" sap:label="Consumption for apartmanet" sap:content-version="1">
+				<Key><PropertyRef Name="apt_num"/><PropertyRef Name="floor_number"/><PropertyRef Name="block_number"/></Key><Property Name="apt_num" Type="Edm.Int16" Nullable="false" sap:label="INT2" sap:quickinfo="2 Byte Signed Integer"/><Property Name="floor_number" Type="Edm.Int16" Nullable="false" sap:label="INT2" sap:quickinfo="2 Byte Signed Integer"/><Property Name="block_number" Type="Edm.Int16" Nullable="false" sap:label="INT2" sap:quickinfo="2 Byte Signed Integer"/><Property Name="rooms" Type="Edm.Int16" sap:label="INT2" sap:quickinfo="2 Byte Signed Integer"/><Property Name="family" Type="Edm.String" MaxLength="20" sap:display-format="UpperCase" sap:label="Char20" sap:quickinfo="Char 20"/><Property Name="sqr_meters" Type="Edm.Int16" sap:label="INT2" sap:quickinfo="2 Byte Signed Integer"/><NavigationProperty Name="to_buildings" Relationship="ZBUILDINGS_IK_SRV.assoc_69001B1971F743262B5A2C0D87692131"
+					FromRole="FromRole_assoc_69001B1971F743262B5A2C0D87692131" ToRole="ToRole_assoc_69001B1971F743262B5A2C0D87692131"/><NavigationProperty Name="to_floors" Relationship="ZBUILDINGS_IK_SRV.assoc_8A6DC04FCF4948BA9AA45B32ACEC503B"
+					FromRole="ToRole_assoc_8A6DC04FCF4948BA9AA45B32ACEC503B" ToRole="FromRole_assoc_8A6DC04FCF4948BA9AA45B32ACEC503B"/></EntityType>
+			<EntityType Name="Z_C_BUILDINGType" sap:label="Consumption for buildings" sap:content-version="1">
+				<Key><PropertyRef Name="block_number"/></Key><Property Name="block_number" Type="Edm.Int16" Nullable="false" sap:label="INT2" sap:quickinfo="2 Byte Signed Integer"/><Property Name="address" Type="Edm.String" MaxLength="200" sap:display-format="UpperCase" sap:label="Text (200 chars.)"
+					sap:quickinfo="Text field length 200"/><Property Name="floor" Type="Edm.Int16" sap:label="INT2" sap:quickinfo="2 Byte Signed Integer"/><NavigationProperty Name="to_floors" Relationship="ZBUILDINGS_IK_SRV.assoc_D2F85873DB778CBF1241D2373C662043"
+					FromRole="FromRole_assoc_D2F85873DB778CBF1241D2373C662043" ToRole="ToRole_assoc_D2F85873DB778CBF1241D2373C662043"/></EntityType>
+			<EntityType Name="Z_C_FLOORType" sap:label="Consumption for floors" sap:content-version="1">
+				<Key><PropertyRef Name="floor_number"/><PropertyRef Name="block_number"/></Key><Property Name="floor_number" Type="Edm.Int16" Nullable="false" sap:label="INT2" sap:quickinfo="2 Byte Signed Integer"/><Property Name="block_number" Type="Edm.Int16" Nullable="false" sap:label="INT2" sap:quickinfo="2 Byte Signed Integer"/><Property Name="color" Type="Edm.String" MaxLength="15" sap:display-format="UpperCase" sap:label="Char15" sap:quickinfo="Char 15"/><Property Name="number_apps" Type="Edm.Int16" sap:label="INT2" sap:quickinfo="2 Byte Signed Integer"/><NavigationProperty Name="to_buildings" Relationship="ZBUILDINGS_IK_SRV.assoc_D2F85873DB778CBF1241D2373C662043"
+					FromRole="ToRole_assoc_D2F85873DB778CBF1241D2373C662043" ToRole="FromRole_assoc_D2F85873DB778CBF1241D2373C662043"/><NavigationProperty Name="to_apt" Relationship="ZBUILDINGS_IK_SRV.assoc_8A6DC04FCF4948BA9AA45B32ACEC503B"
+					FromRole="FromRole_assoc_8A6DC04FCF4948BA9AA45B32ACEC503B" ToRole="ToRole_assoc_8A6DC04FCF4948BA9AA45B32ACEC503B"/></EntityType>
+			<Association Name="assoc_8A6DC04FCF4948BA9AA45B32ACEC503B" sap:content-version="1">
+				<End Type="ZBUILDINGS_IK_SRV.Z_C_FLOORType" Multiplicity="1" Role="FromRole_assoc_8A6DC04FCF4948BA9AA45B32ACEC503B"><OnDelete Action="Cascade"/></End><End Type="ZBUILDINGS_IK_SRV.Z_C_APARTMENTType" Multiplicity="*" Role="ToRole_assoc_8A6DC04FCF4948BA9AA45B32ACEC503B"/></Association>
+			<Association Name="assoc_D2F85873DB778CBF1241D2373C662043" sap:content-version="1">
+				<End Type="ZBUILDINGS_IK_SRV.Z_C_BUILDINGType" Multiplicity="1" Role="FromRole_assoc_D2F85873DB778CBF1241D2373C662043"><OnDelete Action="Cascade"/></End><End Type="ZBUILDINGS_IK_SRV.Z_C_FLOORType" Multiplicity="*" Role="ToRole_assoc_D2F85873DB778CBF1241D2373C662043"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_assoc_D2F85873DB778CBF1241D2373C662043"><PropertyRef Name="block_number"/></Principal>
+					<Dependent Role="ToRole_assoc_D2F85873DB778CBF1241D2373C662043"><PropertyRef Name="block_number"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="assoc_69001B1971F743262B5A2C0D87692131" sap:content-version="1"><End Type="ZBUILDINGS_IK_SRV.Z_C_APARTMENTType" Multiplicity="1" Role="FromRole_assoc_69001B1971F743262B5A2C0D87692131"/><End Type="ZBUILDINGS_IK_SRV.Z_C_BUILDINGType" Multiplicity="0..1" Role="ToRole_assoc_69001B1971F743262B5A2C0D87692131"/>
+				<ReferentialConstraint>
+					<Principal Role="ToRole_assoc_69001B1971F743262B5A2C0D87692131"><PropertyRef Name="block_number"/></Principal>
+					<Dependent Role="FromRole_assoc_69001B1971F743262B5A2C0D87692131"><PropertyRef Name="block_number"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<EntityContainer Name="ZBUILDINGS_IK_SRV_Entities" m:IsDefaultEntityContainer="true" sap:message-scope-supported="true"
+				sap:supported-formats="atom json xlsx"><EntitySet Name="Z_C_APARTMENT" EntityType="ZBUILDINGS_IK_SRV.Z_C_APARTMENTType" sap:content-version="1"/><EntitySet Name="Z_C_BUILDING" EntityType="ZBUILDINGS_IK_SRV.Z_C_BUILDINGType" sap:content-version="1"/><EntitySet Name="Z_C_FLOOR" EntityType="ZBUILDINGS_IK_SRV.Z_C_FLOORType" sap:content-version="1"/>
+				<AssociationSet Name="assoc_69001B1971F743262B5A2C0D87692131" Association="ZBUILDINGS_IK_SRV.assoc_69001B1971F743262B5A2C0D87692131"
+					sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="Z_C_APARTMENT" Role="FromRole_assoc_69001B1971F743262B5A2C0D87692131"/><End EntitySet="Z_C_BUILDING" Role="ToRole_assoc_69001B1971F743262B5A2C0D87692131"/></AssociationSet>
+				<AssociationSet Name="assoc_8A6DC04FCF4948BA9AA45B32ACEC503B" Association="ZBUILDINGS_IK_SRV.assoc_8A6DC04FCF4948BA9AA45B32ACEC503B"
+					sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="Z_C_FLOOR" Role="FromRole_assoc_8A6DC04FCF4948BA9AA45B32ACEC503B"/><End EntitySet="Z_C_APARTMENT" Role="ToRole_assoc_8A6DC04FCF4948BA9AA45B32ACEC503B"/></AssociationSet>
+				<AssociationSet Name="assoc_D2F85873DB778CBF1241D2373C662043" Association="ZBUILDINGS_IK_SRV.assoc_D2F85873DB778CBF1241D2373C662043"
+					sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="Z_C_BUILDING" Role="FromRole_assoc_D2F85873DB778CBF1241D2373C662043"/><End EntitySet="Z_C_FLOOR" Role="ToRole_assoc_D2F85873DB778CBF1241D2373C662043"/></AssociationSet>
+			</EntityContainer>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZBUILDINGS_IK_SRV.ZBUILDINGS_IK_SRV_Entities">
+				<Annotation Term="Aggregation.ApplySupported">
+					<Record>
+						<PropertyValue Property="Transformations">
+							<Collection>
+								<String>aggregate</String>
+								<String>groupby</String>
+								<String>filter</String>
+							</Collection>
+						</PropertyValue><PropertyValue Property="Rollup" EnumMember="None"/></Record>
+				</Annotation>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZBUILDINGS_IK_SRV.Z_C_APARTMENTType">
+				<Annotation Term="Common.SemanticKey">
+					<Collection>
+						<PropertyPath>apt_num</PropertyPath>
+					</Collection>
+				</Annotation>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZBUILDINGS_IK_SRV.Z_C_BUILDINGType">
+				<Annotation Term="Common.SemanticKey">
+					<Collection>
+						<PropertyPath>block_number</PropertyPath>
+					</Collection>
+				</Annotation>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZBUILDINGS_IK_SRV.Z_C_FLOORType">
+				<Annotation Term="Common.SemanticKey">
+					<Collection>
+						<PropertyPath>floor_number</PropertyPath>
+					</Collection>
+				</Annotation>
+			</Annotations><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZBUILDINGS_IK_SRV/$metadata"/><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/ZBUILDINGS_IK_SRV/$metadata"/></Schema>
+	</edmx:DataServices>
+</edmx:Edmx>
